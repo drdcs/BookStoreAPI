@@ -13,7 +13,9 @@ class Settings(BaseSettings):
     testing: bool = os.getenv("TESTING", 0)
     title: str = os.getenv("TITLE")
     version: str = os.getenv("VERSION")
-
+    database_uri_test: str = os.getenv("DATABASE_URI_TEST")
+    database_uri_prod: str = os.getenv("DATABASE_URI_PROD")
+    
 @lru_cache()
 def get_settings() -> BaseSettings:
     log.info("Loading config settings from the environment...")
