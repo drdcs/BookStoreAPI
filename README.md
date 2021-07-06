@@ -51,5 +51,6 @@ export DATABASE_URI_PROD="postgres://{your_username}:{your_password}@{server_ini
 
 ### What we have created ?
 
-**_db_objects _** :-> Enables Database Connections.
-**_ core.py _** :-> Here, we added startup and shutdown event handlers, which get executed before the app starts up or when the app is shutting down, respectively. **_ db.py _** here we write the execute and fetch method based on the one or many row, which we are going to refer in the dbfunctions. We will write the functions once we define the router methods. Since we're not generating the schema, we shouldn't see any tables in the database.
+- **_db_objects _** :-> Enables Database Connections.
+- **_ core.py _** :-> Here, we added startup and shutdown event handlers, which get executed before the app starts up or when the app is shutting down, respectively.
+- **_ db.py _** here we write the execute and fetch method based on the one or many row, which we are going to refer in the dbfunctions. We will write the functions once we define the router methods. Since we're not generating the schema, we shouldn't see any tables in the database.
