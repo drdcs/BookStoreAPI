@@ -10,6 +10,14 @@
 
 > git branch -- 01-devSetting
 
+Git commands used:
+
+```sh
+git branch 01-devSetting
+git checkout 01-devSetting
+
+```
+
 From Project Root Directory:
 
 ```sh
@@ -18,6 +26,8 @@ export ENVIRONMENT=dev
 export TESTING=0
 export TITLE="Bookstore API Documentation"
 export VERSION="1.0.1"
-uvicorn backend.app.run:app --reload
+```
 
+```python
+uvicorn backend.app.run:app --reload
 ```
