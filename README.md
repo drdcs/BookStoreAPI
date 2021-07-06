@@ -45,7 +45,7 @@ We are going to use the Postgres Database. The Postgres can be get through the c
 you can copy the connection string from the Azure Database for PostgreSQL flexible server.
 
 ```sh
-export DATABASE_URI_TEST="postgres://{your_username}:{your_password}@{server_initial}.postgres.database.azure.com/bookstoredb?sslmode=require"
+export DATABASE_URI_TEST="postgres://{your_username}:{your_password}@{server_initial}.postgres.database.azure.com/bookstoretest?sslmode=require"
 export DATABASE_URI_PROD="postgres://{your_username}:{your_password}@{server_initial}.postgres.database.azure.com/bookstoredb?sslmode=require"
 ```
 
@@ -54,3 +54,35 @@ export DATABASE_URI_PROD="postgres://{your_username}:{your_password}@{server_ini
 - **db_objects** : Enables Database Connections.
 - **core.py** : Here, we added startup and shutdown event handlers, which get executed before the app starts up or when the app is shutting down, respectively.
 - **db.py** : here we write the execute and fetch method based on the one or many row, which we are going to refer in the dbfunctions. We will write the functions once we define the router methods. Since we're not generating the schema, we shouldn't see any tables in the database.
+
+## Dev Cycle - Testing Configuration
+
+- Folder Structure.
+- Override Settings from environment variable.
+- A simple test-case.
+
+> git branch -- 03-devSetting
+
+We have created a new application for testing. Grab a reference to our database when needed. A simple test-case **test_ping.py** to assert the testing environment.
+
+The Folder Structure would look something like this now. On a side note , you can create a pull request to merge to the main branch.
+
+```tree
+├── app
+│   ├── configs
+│   │   ├── __init__.py
+│   │   └── config.py
+│   ├── models
+│   ├── routes
+│   ├── run.py
+│   └── utils
+│       ├── core.py
+│       ├── db.py
+│       ├── db_functions.py
+│       └── db_objects.py
+├── requirements.txt
+└── tests
+    ├── __init__.py
+    ├── conftest.py
+    └── test_ping.py
+```
