@@ -2,7 +2,7 @@
 
 > The FastAPI talks about end to end API Developemnt Cycle, Continious Integration and Deployement with the production grade application. We will be deploying the application to Azure App Service.
 
-## Dev Cycle
+## Dev Cycle - Initial Configuration
 
 - Folder Configuration.
 - Get Settings from environment variable.
