@@ -38,6 +38,8 @@ uvicorn backend.app.run:app --reload
 - Building the DB utils.
 - Registering the Configuration.
 
+> git branch -- 02-devSetting
+
 We are going to use the Postgres Database. The Postgres can be get through the cloud service or by spinning a docker container (I have used Postgres on Azure Cloud Service)
 
 you can copy the connection string from the Azure Database for PostgreSQL flexible server.
@@ -46,3 +48,9 @@ you can copy the connection string from the Azure Database for PostgreSQL flexib
 export DATABASE_URI_TEST="postgres://{your_username}:{your_password}@{server_initial}.postgres.database.azure.com/bookstoredb?sslmode=require"
 export DATABASE_URI_PROD="postgres://{your_username}:{your_password}@{server_initial}.postgres.database.azure.com/bookstoredb?sslmode=require"
 ```
+
+### What we have created ?
+
+> **_ db_objects _** :-> Enables Database Conenctions.
+> **_ core.py _** :-> Here, we added startup and shutdown event handlers, which get executed before the app starts up or when the app is shutting down, respectively.
+> **_ db.py _** here we write the execute and fetch method based on the one or many row, which we are going to refer in the db_functions. We will write the functions once we define the router methods. Since we're not generating the schema, we shouldn't see any tables in the database:

@@ -2,17 +2,17 @@ import os
 import logging
 from fastapi import FastAPI, Depends
 from starlette.middleware.cors import CORSMiddleware
-from .configs.config import Settings, get_settings
-from .utils import tasks
-from .utils.db_objects import get_db_connection
+from .configs.config import Settings
+from .utils import core
 
 log = logging.getLogger("uvicorn")
 
 
-def get_application(settings: Settings = Depends(get_settings)):
-    app = FastAPI(title=os.getenv("TITLE"), 
+def get_application():
+    settings = Settings()
+    app = FastAPI(title=settings.title, 
                   description="Backend for the BookStore",
-                  version=os.getenv("VERSION"))
+                  version=settings.version)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -20,8 +20,8 @@ def get_application(settings: Settings = Depends(get_settings)):
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    app.add_event_handler("startup", tasks.create_start_app_handler(app))
-    app.add_event_handler("shutdown", tasks.create_stop_app_handler(app))
+    app.add_event_handler("startup", core.create_start_app_handler(app))
+    app.add_event_handler("shutdown", core.create_stop_app_handler(app))
     return app
 
 app = get_application()

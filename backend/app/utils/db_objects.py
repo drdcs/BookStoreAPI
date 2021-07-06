@@ -1,17 +1,18 @@
 import os
 from fastapi import Depends, FastAPI
 from databases import Database
-from ..configs.config import Settings, get_settings
+from ..configs.config import Settings
 import logging
 
 logger = logging.getLogger(__name__)
 
+settings = Settings()
 
 async def connect_to_db(app: FastAPI) -> None:
     if os.getenv("TESTING") == 1:
-        db_url=os.environ.get("DATABASE_URI_TEST")
+        db_url=settings.database_uri_test
     else:
-        db_url=os.environ.get("DATABASE_URI_PROD")
+        db_url=settings.database_uri_prod
     database = Database(db_url, min_size=2, max_size=10)  # these can be configured in config as well
 
     try:
@@ -34,10 +35,10 @@ async def close_db_connection(app: FastAPI) -> None:
 
 async def get_db_connection():
     if os.getenv("TESTING") == 1:
-        db_url=os.environ.get("DATABASE_URI_TEST")
+        db_url=settings.database_uri_test
         db = Database(db_url)
         return db
     else:
-        db_url=os.environ.get("DATABASE_URI_PROD")
+        db_url=settings.database_uri_prod
         db = Database(db_url)
         return db
