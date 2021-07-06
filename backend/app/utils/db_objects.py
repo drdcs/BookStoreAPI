@@ -32,7 +32,7 @@ async def close_db_connection(app: FastAPI) -> None:
         logger.warn("--- DB DISCONNECT ERROR ---")
 
 
-def get_db_connection():
+async def get_db_connection():
     if os.getenv("TESTING") == 1:
         db_url=os.environ.get("DATABASE_URI_TEST")
         db = Database(db_url)
