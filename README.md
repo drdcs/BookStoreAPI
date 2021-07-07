@@ -93,8 +93,9 @@ The Folder Structure would look something like this now. On a side note , you ca
 
 we have created models, db repositories and api routers.
 
-> Every API endpoint we define is going to need access to our database - making our postgres db the perfect candidate for a dependency.
-> **api/dependencies/database.py** - We have two dependencies here: get_database and get_repository. FastAPI dependencies are just functions - or more accurately Callables - which are called as API endpoint path parameters. These dependancies being used in routes.
+- Every API endpoint we define is going to need access to our database - making our postgres db the perfect candidate for a dependency.
+
+- **api/dependencies/database.py** - We have two dependencies here: get_database and get_repository. FastAPI dependencies are just functions - or more accurately Callables - which are called as API endpoint path parameters. These dependancies being used in routes.
 
 ```python
 @router.post("/book", response_model=BookOut, name="book:create-book", status_code=HTTP_201_CREATED)
