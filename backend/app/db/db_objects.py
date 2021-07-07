@@ -1,7 +1,7 @@
 import os
 from fastapi import Depends, FastAPI
 from databases import Database
-from ..configs.config import Settings
+from app.configs.config import Settings
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,14 +31,3 @@ async def close_db_connection(app: FastAPI) -> None:
         logger.warn("--- DB DISCONNECT ERROR ---")
         logger.warn(e)
         logger.warn("--- DB DISCONNECT ERROR ---")
-
-
-async def get_db_connection():
-    if os.getenv("TESTING") == 1:
-        db_url=settings.database_uri_test
-        db = Database(db_url)
-        return db
-    else:
-        db_url=settings.database_uri_prod
-        db = Database(db_url)
-        return db
