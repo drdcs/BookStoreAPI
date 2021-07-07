@@ -4,6 +4,8 @@ from fastapi import FastAPI, Depends
 from starlette.middleware.cors import CORSMiddleware
 from .configs.config import Settings
 from .utils import core
+from app.api.routes import router as api_router
+
 
 log = logging.getLogger("uvicorn")
 
@@ -22,7 +24,8 @@ def get_application():
     )
     app.add_event_handler("startup", core.create_start_app_handler(app))
     app.add_event_handler("shutdown", core.create_stop_app_handler(app))
-    log.info(app.__getattribute__)
+
+    app.include_router(api_router, prefix="/v1")
     return app
 
 app = get_application()

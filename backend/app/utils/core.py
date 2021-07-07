@@ -2,7 +2,7 @@
 
 from typing import Callable
 from fastapi import FastAPI
-from .db_objects import connect_to_db, close_db_connection
+from app.db.db_objects import connect_to_db, close_db_connection
 
 def create_start_app_handler(app: FastAPI) -> Callable:
     async def start_app() -> None:
@@ -16,3 +16,4 @@ def create_stop_app_handler(app: FastAPI) -> Callable:
         await close_db_connection(app)
 
     return stop_app
+
